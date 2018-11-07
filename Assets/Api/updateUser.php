@@ -66,8 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      * Taken the values of username, password, IdPp and permissions
      * Escaped text string (user and password)
      */
-    $user = isset($_POST["username"]) ? $_POST['username'] : '';
-    $user = mysqli_real_escape_string($connUtenti, $user);
     $password = isset($_POST["password"]) ? $_POST['password'] : '';
     $password = mysqli_real_escape_string($connUtenti, $password);
     $IdPp = isset($_POST["selectPerson"]) ? $_POST['selectPerson'] : ''; 
@@ -99,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  * The btnCreateUser button is pressed
  */
 if(isset($_POST['btnCreateUser'])) {
+
+    $user = isset($_POST["username"]) ? $_POST['username'] : '';
+    $user = mysqli_real_escape_string($connUtenti, $user);
     /**
      * Query of insertion of user data into table admin
      */
@@ -118,10 +119,10 @@ if(isset($_POST['btnCreateUser'])) {
      */
     if($result){
         $inserito="Inserimento avvenuto correttamente";
-        header( "Location:../html/utenti.php?message=inserito" );
+        header( "Location:../PHP/users.php?messaggio=inserito" );
     }else{
         $inserito="Inserimento non eseguito";
-        header( "Location:../html/utenti.php?message=warning" );
+        header( "Location:../PHP/users.php?messaggio=warning" );
     }
 }
 
@@ -129,6 +130,8 @@ if(isset($_POST['btnCreateUser'])) {
  * The btnUpdateUser buttonis pressed
  */
 if(isset($_POST['btnUpdateUser'])) {
+    
+    $user = isset($_POST["selectUtente"]) ? $_POST['selectUtente'] : '';
 
     /**
      * Query of update of user data into table admin
