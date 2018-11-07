@@ -49,26 +49,21 @@
             $mess=$_GET["messaggio"];
             
             if($mess=="errore"){
-                $notizia='<div class="alert alert-danger" id="alertEvento">
+                $notizia='<div class="alert alert-danger" id="userAlert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <p>Errore</p></div>';
             }
             if($mess=="inserito"){
-                $notizia='<div class="alert alert-success" id="alertEvento">
+                $notizia='<div class="alert alert-success" id="userAlert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <p>Utente inserito</p></div>';
             }
             if($mess=="password"){
-                $notizia='<div class="alert alert-success" id="alertEvento">
+                $notizia='<div class="alert alert-success" id="userAlert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <p>Password aggiornata</p></div>';
             }
-            
-             if($mess=="eliminato"){
-                $notizia='<div class="alert alert-success" id="alertEvento">
-            <button type="button" class="close" data-dismiss="alert">x</button>
-            <p>Utente eliminato</p></div>';
-            }
+           
         }
 
 
@@ -82,7 +77,7 @@
 <script src='../../../Assets/Libs/Bootstrap/JS/bootstrap.js'></script>
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="../../../Assets/Libs/DataTables/datatables.min.js"></script>
-<script src='../JS/javascriptUtenti.js'></script>
+<script src='../JS/Adm_users.js'></script>
 
 <link rel='stylesheet' href='../../../Assets/Libs/Bootstrap/CSS/bootstrap.css'>
 <link rel='stylesheet' href='../../../Assets/Libs/DataTables/datatables.min.css'>
@@ -132,7 +127,7 @@
         <div class='jumbotron'>
         <?php echo $notizia; ?>
         <h1 id="titoloPannelloControllo">Gestione Utenti</h1>
-         <table id='listaUtenti' class='table table-striped display'  width='100%' cellspacing='0'>
+         <table id='usersList' class='table table-striped display'  width='100%' cellspacing='0'>
         <thead>
             <tr>
                 <th>Username</th>
@@ -160,10 +155,10 @@
     <!-- Create a new User ------------------------------>
 
     <!-- Button that open the form for user creation -->
-    <button type='button' id='btnCreaUtente' class='btn btn-info'>Crea un nuovo utente</button>
+    <button type='button' id='btnUserCreation' class='btn btn-info'>Crea un nuovo utente</button>
    
     <!-- BEGIN User creation -->
-    <div id="creaUtente" hidden>
+    <div id="userCreation" hidden>
       <p>Crea un nuovo utente</p>
         <!-- BEGIN Form for user creation -->
 		<form id='addUser' method='post' action='../Api/inserisciUtente.php'>
@@ -186,7 +181,7 @@
 		<input type='text' name='password' class='form-control' id='password'/>
 		<span id='glyphiconPassword'></span>
 		<span id='helpPassword' class='help-block'>Inserisci una nuova password oppure generala automaticamente</span>
-		<button type='button' id='generaPasswordUtente' class='btn btn-info'>Genera</button>
+		<button type='button' id='generatePassword' class='btn btn-info'>Genera</button>
 		</div>
 
         <!-- Permission fields -->
@@ -208,7 +203,7 @@
 		<div class='pull-right'>
 
         <!-- Button for close user form -->
-		<button type='button' id='chiudi' class='btn btn-danger'>Chiudi</button>
+		<button type='button' id='closeUserCreation' class='btn btn-danger'>Chiudi</button>
         <!-- Button for create new user -->
         <button type="button" id="applica" class="btn btn-info" data-toggle="modal" data-target="#modalInserisciUtente">Inserisci utente</button>
 		</div>
@@ -237,22 +232,22 @@
             
     <!-- Change user password and permissions -->
      <!-- BEGIN User update -->
-    <button type='button' id='btnPassword' class='btn btn-info'>Gestione utente</button>
-    <div id="gestionePassword" hidden>
+    <button type='button' id='btnUserUpdate' class='btn btn-info'>Gestione utente</button>
+    <div id="userUpdate" hidden>
 
     <!-- BEGIN Form -->
-    <form id='cambiaPassword' method='post' action='../Api/updateUser.php'>
+    <form id='updateUser' method='post' action='../Api/updateUser.php'>
     
     <!-- Select username for change -->
     <div class="form-group">
-        <label for="optionUtenti">Selezionare l'utente al quale si vuole cambiare password</label>
-        <select class="form-control" id="optionUtenti" name="selectUtente"></select>
+        <label for="usersOprion">Selezionare l'utente al quale si vuole cambiare password</label>
+        <select class="form-control" id="usersOprion" name="selectUtente"></select>
     </div> 
 
     <!-- Password update -->
-    <input type='text' name='pw' class='form-control' id='pw'/>
+    <input type='text' name='password' class='form-control' id='password'/>
     <span class="help-block">Inserire una nuova password oppure generarla automaticamente</span>
-    <button type='button' id='generaPassword' class='btn btn-info'>Genera</button>
+    <button type='button' id='generatePassword' class='btn btn-info'>Genera</button>
     <br/>
 
     <!-- Permissions update -->
@@ -270,12 +265,12 @@
         <label><input type='checkbox' name='permissions[]' value='reviserPermission'>Revisore</label>
     </div>
     <div class='pull-right' id="bottoniFormPw">
-    <button type='button' id='chiudiPassword' class='btn btn-danger'>Chiudi</button>
-    <button type="button" id="cambiaPassword" class="btn btn-info" data-toggle="modal" data-target="#modalCambiaPassword">Cambia password</button>
+    <button type='button' id='closeUserUpdate' class='btn btn-danger'>Chiudi</button>
+    <button type="button" id="updateUser" class="btn btn-info" data-toggle="modal" data-target="#modalUpdateUser">Cambia password</button>
     </div>
 
     <!-- Modal for confirm the update and recap password -->
-    <div id="modalCambiaPassword" class="modal fade">
+    <div id="modalUpdateUser" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
