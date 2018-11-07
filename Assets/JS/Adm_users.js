@@ -72,7 +72,7 @@ $(document).ready(function () {
      * Declaration and initialization of variables
      */
     var usersList;
-    var urlUsers = "../Api/extractUsersList.php";
+    var url = "../Api/extractUsersList.php";
     var usersTableHeader = "";
     var peopleList;
     var urlPeople = "../Api/extractPeople.php";
@@ -81,7 +81,7 @@ $(document).ready(function () {
     * AJAX call for extraction and costruction of users table
     * and username list
     */
-    $.getJSON(urlUsers, function (result) {
+    $.getJSON(url, function (result) {
         $.each(result, function (index, item) {
             // Row construction for table
             var row = "<tr><td>" + item.Username + "</td>" +
