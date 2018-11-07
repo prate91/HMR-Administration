@@ -243,7 +243,7 @@
     <div id="gestionePassword" hidden>
 
     <!-- BEGIN Form -->
-    <form id='cambiaPassword' method='post' action='../Api/cambiaPassword.php'>
+    <form id='cambiaPassword' method='post' action='../Api/updateUser.php'>
     
     <!-- Select username for change -->
     <div class="form-group">

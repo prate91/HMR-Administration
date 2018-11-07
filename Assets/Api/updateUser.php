@@ -50,12 +50,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = isset($_POST["selectUtente"]) ? $_POST['selectUtente'] : '';
   $password = isset($_POST["pw"]) ? $_POST['pw'] : '';
   $password = mysqli_real_escape_string($connUtenti, $password);
+
+
+  $permissions = isset($_POST['permissions']) ? $_POST['permissions'] : array();
+  if (!count($permissions)) {
+      $errore = 'Errore! Devi selezionare almeno un permesso!';
+      $ok = 0;
+  }    
+      
+  foreach($permissions as $permission) {
+    if($permission == "administratorPermission"){
+        $administratorPermission = 1;
+    }
+      if($permission == "webEditorPermission"){
+        $webEditorPermission = 1;
+    }
+    if($permission == "editorPermission"){
+        $editorPermission = 1;
+    }
+    if($permission == "reviserPermission"){
+        $reviserPermission = 1;
+    }
+  }
   
 }
 }
 
 //inserting data order
-$toinsert = "UPDATE admin SET Passcode = MD5('$password') WHERE Username = '$user'";
+$toinsert = "UPDATE admin SET Passcode = MD5('$password'), AdministratorPermission = '$administratorPermission', WebEditorPermission = '$webEditorPermission', EditorPermission = '$editorPermission', ReviserPermission = '$reviserPermission' WHERE Username = '$user'";
 
 //declare in the order variable
 $result = mysqli_query($connUtenti, $toinsert);	//order executes

@@ -42,9 +42,9 @@ if(isset($_POST['invia'])) {
 
 // define variables and set to empty values
 $user = $password = $errore = $IdPp = "";
-$permessi = array();
+$permissions = array();
 $ok = 1;
-$amministratore = $webeditor = $redattore =  $revisore  = 0;
+$administratorPermission = $webEditorPermission = $editorPermission =  $reviserPermission  = 0;
 $result = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -53,27 +53,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = isset($_POST["password"]) ? $_POST['password'] : '';
   $password = mysqli_real_escape_string($connUtenti, $password);
   $IdPp = isset($_POST["selectPerson"]) ? $_POST['selectPerson'] : ''; 
-  echo $IdPp; 
   
 
-  $permessi = isset($_POST['permessi']) ? $_POST['permessi'] : array();
-  if (!count($permessi)) {
+  $permissions = isset($_POST['permissions']) ? $_POST['permissions'] : array();
+  if (!count($permissions)) {
       $errore = 'Errore! Devi selezionare almeno un permesso!';
       $ok = 0;
   }    
       
-  foreach($permessi as $permesso) {
-    if($permesso == "amministratore"){
-        $amministratore = 1;
+  foreach($permissions as $permission) {
+    if($permission == "administratorPermission"){
+        $administratorPermission = 1;
     }
-      if($permesso == "webeditor"){
-        $webeditor = 1;
+      if($permission == "webEditorPermission"){
+        $webEditorPermission = 1;
     }
-    if($permesso == "redattore"){
-        $redattore = 1;
+    if($permission == "editorPermission"){
+        $editorPermission = 1;
     }
-    if($permesso == "revisore"){
-        $revisore = 1;
+    if($permission == "reviserPermission"){
+        $reviserPermission = 1;
     }
   }
   
@@ -82,8 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 //inserting data order
-$toinsert = "INSERT INTO admin (username, passcode, amministratore, webeditor, redattore, revisore, IdPp) 
-VALUES ('$user',MD5('$password'),'$amministratore','$webeditor','$redattore','$revisore', '$IdPp')";
+$toinsert = "INSERT INTO admin (Username, Passcode, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id) 
+VALUES ('$user',MD5('$password'),'$administratorPermission','$webEditorPermission','$editorPermission','$reviserPermission', '$IdPp')";
 
 //declare in the order variable
 if($ok ==1 ){
