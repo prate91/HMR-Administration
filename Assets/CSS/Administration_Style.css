@@ -1,0 +1,127 @@
+
+.Administration_content {
+    clear: both;
+    width: 864px; /*60%*/
+    padding: 0px;
+    /*margin-top: 30px;*/
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    /*border: 1px solid black;*/
+}
+.stop{
+    clear: both; 
+}
+
+.jumbotron{
+    width: 864px; /*60%*/
+    /*margin: 36px auto 36px auto;*/
+    padding: 36px;
+    
+}
+
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+
+
+
+
+
+#titoloPannelloControllo{
+    text-align: center;
+    font-size:36px;
+    font-weight:bold;
+    color:#d81a68;
+    
+}
+
+#permessi{
+    float: left;
+}
+
+#listaPermessi{
+    font-size: 10px;
+    margin-top: 8px;
+    width: 500px;
+    float: left;
+}
+
+#listaPermessi li{
+    margin: 0 2.25px;
+    padding: 1px 1px;
+}
+
+#logoAvatar{
+    clear: both;
+    margin:36px auto;
+    width: 108px;
+}
+
+.bottoneCP{
+    text-align: center;
+}
+
+.quadrettone{
+    width: 395px;
+    height: 250px;
+    float: left;
+}
+
+.iconaUser{
+    margin: 8px auto 0px auto;
+    float: right;
+}
+
+#cc{
+    width:80px;
+}
+
+/*Cambia passord */
+#gestionePassword{
+    margin: 18px;
+}
+#generaPassword{
+    margin: 18px 0;
+    
+}
+#passwordAdvise{
+    text-align: center;
+    line-height: 1.5;
+    font-weight: 300;
+}
+#passwordOutput{
+    color: black;
+    font-weight: 600;
+    
+}
+
+#creaUtente{
+    margin:18px;
+}
+
+#campiMancanti{
+    line-height: 1.5;
+}
+
+
+
+.btnLogin{
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    margin: 0 18px 0 750px;
+    padding: 9px;
+     border: 2px solid white;
+    
+}
+
+
+
+.btnLogin a{color:white;}
+
+.btnLogin a:hover{text-decoration: underline}
+
+.btnLogin a:visited{color:#eee}
