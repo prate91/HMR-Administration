@@ -141,7 +141,6 @@
                 <th>Redattore</th>
                 <th>Revisore</th>
                 <th>IdPp</th>
-                <th></th>
             </tr>
         </thead>
         <tfoot>
@@ -152,7 +151,6 @@
                 <th>Redattore</th>
                 <th>Revisore</th>
                 <th>IdPp</th>
-                <th></th>
             </tr>
         </tfoot>
         <tbody id='corpoListaUtenti'></tbody>
@@ -239,7 +237,7 @@
             
     <!-- Change user password and permissions -->
      <!-- BEGIN User update -->
-    <button type='button' id='btnPassword' class='btn btn-info'>Gestione password</button>
+    <button type='button' id='btnPassword' class='btn btn-info'>Gestione utente</button>
     <div id="gestionePassword" hidden>
 
     <!-- BEGIN Form -->
@@ -299,28 +297,6 @@
     </form>
     </div>
 		</div>
-
-    
-     <!-- Modal for confirm the deletion of user -->
-    <div id="modalEliminaUtente" class="modal fade">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Elimina Utente</h4>
-        </div>
-        <div class="modal-body">
-            <p class="alert alert-danger"><strong>Attenzione!</strong> Cancellerai l'utente definitivamente.
-                <br/>Questa operazione non è reversibile</p>
-        </div>
-            <input type='' class='hidden_id_auth' name='id_evento' value='' />
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-            <button type="button" class="btn btn-danger" id="eliminaDef">Elimina utente</button>
-        </div>
-        </div>
-        </div>
-    </div>
 
 <!-- Standard HMRWeb footer////////////////////////////////////////////////////
 // Set:
