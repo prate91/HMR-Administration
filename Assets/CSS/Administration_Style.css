@@ -27,9 +27,6 @@
 
 
 
-
-
-
 #titoloPannelloControllo{
     text-align: center;
     font-size:36px;
@@ -38,18 +35,15 @@
     
 }
 
-#permessi{
-    float: left;
-}
 
-#listaPermessi{
+#permissionsList{
     font-size: 10px;
     margin-top: 8px;
     width: 500px;
     float: left;
 }
 
-#listaPermessi li{
+#permissionsList li{
     margin: 0 2.25px;
     padding: 1px 1px;
 }
@@ -98,14 +92,13 @@
     
 }
 
-#creaUtente{
+#userCreation{
     margin:18px;
 }
 
 #campiMancanti{
     line-height: 1.5;
 }
-
 
 
 .btnLogin{

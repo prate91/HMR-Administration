@@ -44,11 +44,11 @@
     if($administratorPermission==0) {
         header('Location: no_permissions.php');
     }
-    $messaggio = $mess = $errore = $notizia = "";
-     if(isset($_GET["messaggio"])){
-            $mess=$_GET["messaggio"];
+    $message = $mess = $warning = $notizia = "";
+     if(isset($_GET["message"])){
+            $mess=$_GET["message"];
             
-            if($mess=="errore"){
+            if($mess=="warning"){
                 $notizia='<div class="alert alert-danger" id="userAlert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <p>Errore</p></div>';
@@ -161,7 +161,7 @@
     <div id="userCreation" hidden>
       <p>Crea un nuovo utente</p>
         <!-- BEGIN Form for user creation -->
-		<form id='addUser' method='post' action='../Api/inserisciUtente.php'>
+		<form id='addUser' method='post' action='../Api/updateUser.php'>
         <!-- Select person form people -->
         <label for="optionPeople">Selezionare la persona alla quale si vuole associare un account</label>
         <select class="form-control" id="optionPeople" name="selectPerson"></select>
@@ -221,7 +221,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                         <input type='submit' name='invia' id='invia' class='btn btn-info' value='Inserisci'>
+                         <input type='submit' name='btnCreateUser' id='btnCreateUser' class='btn btn-info' value='Inserisci'>
                     </div>
                 </div>
             </div>
@@ -284,7 +284,7 @@
                  </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                    <input type='submit' name='invia' id='invia' class='btn btn-info' value='Cambia password'>
+                    <input type='submit' name='btnUpdateUser' id='btnUpdateUser' class='btn btn-info' value='Cambia password'>
                 </div>
             </div>
         </div>

@@ -34,21 +34,18 @@
 //
 // ////////////////////////////////////////////////////////////////////////
     
-    include('../PHP/sessionSet.php');
-	require("funzioniUtenti.php");
-    
-	
-	//header('Content-Type : application/json');
-	
-	$campi_tabella = array(
-        'IdPp',
-		'Name',
-		'Surname'
-	);
-	
-		$query = "SELECT IdPp, Name, Surname FROM people";
-		echo loadDataEpicac($query, $campi_tabella);
-   
+include('../PHP/sessionSet.php');
+require("funzioniUtenti.php");
+
+$tableFields = array(
+	'IdPp',
+	'Name',
+	'Surname'
+);
+
+$query = "SELECT IdPp, Name, Surname FROM people";
+echo loadDataEpicac($query, $tableFields);
+
 	
 	
 ?>

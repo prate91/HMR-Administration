@@ -1,11 +1,10 @@
 <?php
-
 // ////////////////////////////////////////////////////////////////////////
 //
 // Project: HMRWeb - HMR project new website
 // Package:  HMRAdministration manage users
-// Title: Query to change User
-// File: changeUser.php
+// Title: Query to insert new account
+// File: createUser.php
 // Path: /Assets/Api
 // Type: php
 // Started: 2018.11.03
@@ -37,63 +36,122 @@
 
 require("../../../../Config/UsersConfig.php");
 
-if(isset($_POST['invia'])) {
 
-// define variables and set to empty values
-$user = $password = $nome = $cognome = $mail = $errore = "";
-$permessi = array();
+
+
+/**
+ * Define variables and set to empty values
+ */ 
+$user = $password = $warning = $IdPp = "";
+$permissions = array();
+
+/**
+ * Set $ok that control if is setted at least one permission
+ */
 $ok = 1;
-$amministratore = $webeditor = $redattore =  $revisore  = 0;
+
+/**
+ * Unset permissions variables
+ */
+$administratorPermission = $webEditorPermission = $editorPermission =  $reviserPermission  = 0;
+
+/**
+ * Initialized result to false
+ */
 $result = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $user = isset($_POST["selectUtente"]) ? $_POST['selectUtente'] : '';
-  $password = isset($_POST["pw"]) ? $_POST['pw'] : '';
-  $password = mysqli_real_escape_string($connUtenti, $password);
 
-
-  $permissions = isset($_POST['permissions']) ? $_POST['permissions'] : array();
-  if (!count($permissions)) {
-      $errore = 'Errore! Devi selezionare almeno un permesso!';
-      $ok = 0;
-  }    
-      
-  foreach($permissions as $permission) {
-    if($permission == "administratorPermission"){
-        $administratorPermission = 1;
+    /**
+     * Taken the values of username, password, IdPp and permissions
+     * Escaped text string (user and password)
+     */
+    $user = isset($_POST["username"]) ? $_POST['username'] : '';
+    $user = mysqli_real_escape_string($connUtenti, $user);
+    $password = isset($_POST["password"]) ? $_POST['password'] : '';
+    $password = mysqli_real_escape_string($connUtenti, $password);
+    $IdPp = isset($_POST["selectPerson"]) ? $_POST['selectPerson'] : ''; 
+    $permissions = isset($_POST['permissions']) ? $_POST['permissions'] : array();
+    if (!count($permissions)) {
+        $warning = 'Errore! Devi selezionare almeno un permesso!';
+        $ok = 0;
+    }    
+    foreach($permissions as $permission) {
+        if($permission == "administratorPermission"){
+            $administratorPermission = 1;
+        }
+        if($permission == "webEditorPermission"){
+            $webEditorPermission = 1;
+        }
+        if($permission == "editorPermission"){
+            $editorPermission = 1;
+        }
+        if($permission == "reviserPermission"){
+            $reviserPermission = 1;
+        }
     }
-      if($permission == "webEditorPermission"){
-        $webEditorPermission = 1;
-    }
-    if($permission == "editorPermission"){
-        $editorPermission = 1;
-    }
-    if($permission == "reviserPermission"){
-        $reviserPermission = 1;
-    }
-  }
+  
   
 }
+
+
+/**
+ * The btnCreateUser button is pressed
+ */
+if(isset($_POST['btnCreateUser'])) {
+    /**
+     * Query of insertion of user data into table admin
+     */
+    $toinsert = "INSERT INTO admin (Username, Passcode, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id) 
+    VALUES ('$user',MD5('$password'),'$administratorPermission','$webEditorPermission','$editorPermission','$reviserPermission', '$IdPp')";
+
+    /**
+     * Control value of $ok, i.e. control if at least one permission is setted
+     * Execute the query
+     */
+    if($ok ==1 ){
+        $result = mysqli_query($connUtenti, $toinsert);	//order executes
+    }
+
+    /**
+     * Redirection
+     */
+    if($result){
+        $inserito="Inserimento avvenuto correttamente";
+        header( "Location:../html/utenti.php?message=inserito" );
+    }else{
+        $inserito="Inserimento non eseguito";
+        header( "Location:../html/utenti.php?message=warning" );
+    }
 }
 
-//inserting data order
-$toinsert = "UPDATE admin SET Passcode = MD5('$password'), AdministratorPermission = '$administratorPermission', WebEditorPermission = '$webEditorPermission', EditorPermission = '$editorPermission', ReviserPermission = '$reviserPermission' WHERE Username = '$user'";
+/**
+ * The btnUpdateUser buttonis pressed
+ */
+if(isset($_POST['btnUpdateUser'])) {
 
-//declare in the order variable
-$result = mysqli_query($connUtenti, $toinsert);	//order executes
+    /**
+     * Query of update of user data into table admin
+     */
+    $toinsert = "UPDATE admin SET Passcode = MD5('$password'), AdministratorPermission = '$administratorPermission', WebEditorPermission = '$webEditorPermission', EditorPermission = '$editorPermission', ReviserPermission = '$reviserPermission' WHERE Username = '$user'";
 
-if($result){
-
-   $inserito="Inserimento avvenuto correttamente";
-    header( "Location:../PHP/users.php?messaggio=password" );
-
-}else{
-
-	$inserito="Inserimento non eseguito";
-  header( "Location:../PHP/users.php?messaggio=errore" );
-
-
+    /**
+     * Control value of $ok, i.e. control if at least one permission is setted
+     * Execute the query
+     */
+    if($ok ==1 ){
+        $result = mysqli_query($connUtenti, $toinsert);	//order executes
+    }
+    /** 
+     * Redirection
+     */
+    if($result){
+        $inserito="Inserimento avvenuto correttamente";
+        header( "Location:../PHP/users.php?messaggio=password" );
+    }else{
+        $inserito="Inserimento non eseguito";
+        header( "Location:../PHP/users.php?messaggio=errore" );
+    }
 }
-
 
 ?>

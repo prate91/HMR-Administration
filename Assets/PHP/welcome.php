@@ -98,7 +98,7 @@
 <span class="stop"></span>
 <div class="HMR_Content">    
 <div class="jumbotron">
-<ul id="listaPermessi" class="list-group list-inline">
+<ul id="permissionsList" class="list-group list-inline">
   <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
     <?php if($webeditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
     <?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
