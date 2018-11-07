@@ -14,7 +14,7 @@ $tableFields = array(
 );
 
 $query = "SELECT AuthId, Username, AdministratorPermission, WebEditorPermission,  EditorPermission, ReviserPermission, IdPp_Id FROM admin";
-echo carica_dati($query, $tableFields);
+echo loadDataUsers($query, $tableFields);
    
 	
 	
