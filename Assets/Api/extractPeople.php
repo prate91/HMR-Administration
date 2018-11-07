@@ -35,7 +35,7 @@
 // ////////////////////////////////////////////////////////////////////////
     
 include('../PHP/sessionSet.php');
-require("funzioniUtenti.php");
+require("functions.php");
 
 $tableFields = array(
 	'IdPp',

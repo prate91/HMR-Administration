@@ -1,6 +1,6 @@
 <?php
     include('../PHP/sessionSet.php');
-	require("funzioniUtenti.php");
+	require("functions.php");
 	
 	//header('Content-Type : application/json');
 	
