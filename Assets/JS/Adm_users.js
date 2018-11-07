@@ -127,31 +127,35 @@ $(document).ready(function () {
     });
 
     /**
-     * On click event that show User cration form
+     * On click event that show User creation form
      */
     $("#btnUserCreation").click(function () {
-        $("#userCreation").show();
+        $("#formUser").show();
+        $("#selectFormUser").hide();
+        $("#formPassword").show();
+        $("#divOptionPeople").show();
+        $("#permissions").show();
+        $("#createUser").show();
+        $("#updateUser").hide();
+        $("#sendButtonsGroup").show();
+
+
     });
 
-    /**
-     * On click event that hide User cration form
-     */
-    $("#closeUserCreation").click(function () {
-        $("#userCreation").hide();
-    });
 
     /**
      * On click event that show User update form
      */
     $("#btnUserUpdate").click(function () {
-        $("#userUpdate").show();
-    });
+        $("#formUser").hide();
+        $("#selectFormUser").show();
+        $("#formPassword").show();
+        $("#divOptionPeople").hide();
+        $("#permissions").show();
+        $("#createUser").hide();
+        $("#updateUser").show();
+        $("#sendButtonsGroup").show();
 
-    /**
-     * On click event that hide User update form
-     */
-    $("#closeUserUpdate").click(function () {
-        $("#userUpdate").hide();
     });
 
 

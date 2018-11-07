@@ -43,7 +43,7 @@ $tableFields = array(
 	'Surname'
 );
 
-$query = "SELECT IdPp, Name, Surname FROM people";
+$query = "SELECT IdPp, Name, Surname FROM people ORDER BY Surname";
 echo loadDataEpicac($query, $tableFields);
 
 	

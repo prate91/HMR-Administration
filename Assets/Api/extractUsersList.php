@@ -13,7 +13,7 @@ $tableFields = array(
 	'IdPp_Id'
 );
 
-$query = "SELECT AuthId, Username, AdministratorPermission, WebEditorPermission,  EditorPermission, ReviserPermission, IdPp_Id FROM admin";
+$query = "SELECT AuthId, Username, AdministratorPermission, WebEditorPermission,  EditorPermission, ReviserPermission, IdPp_Id FROM admin ORDER BY Username";
 echo loadDataUsers($query, $tableFields);
    
 	

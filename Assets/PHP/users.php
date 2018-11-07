@@ -155,20 +155,26 @@
     <!-- Create a new User ------------------------------>
 
     <!-- Button that open the form for user creation -->
-    <button type='button' id='btnUserCreation' class='btn btn-info'>Crea un nuovo utente</button>
-   
+    <div class="btn-group">
+        <button type='button' id='btnUserCreation' class='btn btn-primary'>Crea un nuovo utente</button>
+         <button type='button' id='btnUserUpdate' class='btn btn-primary'>Modifica un utente</button>
+    </div> 
+    
     <!-- BEGIN User creation -->
-    <div id="userCreation" hidden>
-      <p>Crea un nuovo utente</p>
+    <div id="userManage">
+      
         <!-- BEGIN Form for user creation -->
 		<form id='addUser' method='post' action='../Api/updateUser.php'>
-        <!-- Select person form people -->
-        <label for="optionPeople">Selezionare la persona alla quale si vuole associare un account</label>
-        <select class="form-control" id="optionPeople" name="selectPerson"></select>
-        <p>Se la persona a cui associare l'account non è presente nel database <a href="../../../EPICAC/PHP/newAuthorForm.php">inseriscila</a></p>
-
-		<!-- Username field-->
-		<div id='formUser' class='form-group'>
+       
+        <!-- Select username for change -->
+        <div id='selectFormUser' class="form-group" hidden>
+        <label for="usersOprion">Selezionare l'utente al quale si vuole cambiare password</label>
+        <select class="form-control" id="usersOprion" name="selectUtente"></select>
+        </div> 
+        
+        <!-- Username field-->
+		<div id='formUser' class='form-group' hidden>
+        <p>Crea un nuovo utente</p>
 		<label for='username'>Username</label>
 		<input type='text' name='username' class='form-control' id='username'/>
 		<span id='glyphiconUsername'></span>
@@ -176,15 +182,24 @@
 		</div>
 
 		<!-- Password fiels-->
-		<div id='formPassword' class='form-group'>
+		<div id='formPassword' class='form-group' hidden>
 		<label for='password'>Password</label>
 		<input type='text' name='password' class='form-control' id='password'/>
 		<span id='glyphiconPassword'></span>
 		<span id='helpPassword' class='help-block'>Inserisci una nuova password oppure generala automaticamente</span>
 		<button type='button' id='generatePassword' class='btn btn-info'>Genera</button>
-		</div>
+        </div>
+        
+        <!-- Select person form people -->
+        <div id="divOptionPeople" hidden>
+        <label for="optionPeople">Selezionare la persona alla quale si vuole associare un account</label>
+        <select class="form-control" id="optionPeople" name="selectPerson"></select>
+        <p>Se la persona a cui associare l'account non è presente nel database <a href="../../../EPICAC/PHP/newAuthorForm.php">inseriscila</a></p>
+        </div>
 
         <!-- Permission fields -->
+
+        <div id="permissions" hidden>
         <p>Seleziona i permessi da applicare al nuovo utente</p>
          <div class='checkbox'>
             <label><input type='checkbox' name='permissions[]' value='administratorPermission'>Amministratore</label>
@@ -198,14 +213,14 @@
         <div class='checkbox'>
             <label><input type='checkbox' name='permissions[]' value='reviserPermission'>Revisore</label>
         </div>
+        </div>
 
         <!-- Buttons group -->
-		<div class='pull-right'>
-
-        <!-- Button for close user form -->
-		<button type='button' id='closeUserCreation' class='btn btn-danger'>Chiudi</button>
+		<div id="sendButtonsGroup" class='pull-right' hidden>
         <!-- Button for create new user -->
-        <button type="button" id="applica" class="btn btn-info" data-toggle="modal" data-target="#modalInserisciUtente">Inserisci utente</button>
+        <button type="button" id="createUser" class="btn btn-info" data-toggle="modal" data-target="#modalInserisciUtente">Inserisci utente</button>
+        <!-- Button for create new user -->
+        <button type="button" id="updateUser" class="btn btn-info" data-toggle="modal" data-target="#modalUpdateUser">Modifica utente</button>
 		</div>
 
         <!-- Modal for confirm the creation and recap password -->
@@ -226,48 +241,9 @@
                 </div>
             </div>
         </div>
-        </form>
     </div>
-    <!-- END User creation -->
-            
-    <!-- Change user password and permissions -->
-     <!-- BEGIN User update -->
-    <button type='button' id='btnUserUpdate' class='btn btn-info'>Gestione utente</button>
-    <div id="userUpdate" hidden>
+   
 
-    <!-- BEGIN Form -->
-    <form id='updateUser' method='post' action='../Api/updateUser.php'>
-    
-    <!-- Select username for change -->
-    <div class="form-group">
-        <label for="usersOprion">Selezionare l'utente al quale si vuole cambiare password</label>
-        <select class="form-control" id="usersOprion" name="selectUtente"></select>
-    </div> 
-
-    <!-- Password update -->
-    <input type='text' name='password' class='form-control' id='password'/>
-    <span class="help-block">Inserire una nuova password oppure generarla automaticamente</span>
-    <button type='button' id='generatePassword' class='btn btn-info'>Genera</button>
-    <br/>
-
-    <!-- Permissions update -->
-    <p>Seleziona i permessi da modificare all'utente selezionato</p>
-        <div class='checkbox'>
-        <label><input type='checkbox' name='permissions[]' value='administratorPermission'>Amministratore</label>
-    </div>
-    <div class='checkbox'>
-        <label><input type='checkbox' name='permissions[]' value='webEditorPermission'>Web Editor</label>
-    </div>
-    <div class='checkbox'>
-        <label><input type='checkbox' name='permissions[]' value='editorPermission'>Redattore</label>
-    </div>
-    <div class='checkbox'>
-        <label><input type='checkbox' name='permissions[]' value='reviserPermission'>Revisore</label>
-    </div>
-    <div class='pull-right' id="bottoniFormPw">
-    <button type='button' id='closeUserUpdate' class='btn btn-danger'>Chiudi</button>
-    <button type="button" id="updateUser" class="btn btn-info" data-toggle="modal" data-target="#modalUpdateUser">Cambia password</button>
-    </div>
 
     <!-- Modal for confirm the update and recap password -->
     <div id="modalUpdateUser" class="modal fade">
@@ -289,9 +265,9 @@
             </div>
         </div>
     </div>
-    </form>
     </div>
-		</div>
+        </div>
+         </form>
 
 <!-- Standard HMRWeb footer////////////////////////////////////////////////////
 // Set:
