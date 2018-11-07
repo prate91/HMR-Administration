@@ -45,7 +45,7 @@
    $briefName = $_SESSION['briefName'];
    $completeName = $_SESSION['completeName'];
    $administratorPermission = $_SESSION['administratorPermission'];
-   $webeditorPermission = $_SESSION['webEditorPermission'];
+   $webEditorPermission = $_SESSION['webEditorPermission'];
    $editorPermission = $_SESSION['editorPermission'];
    $reviserPermission = $_SESSION['reviserPermission'];
 ?>
@@ -100,7 +100,7 @@
 <div class="jumbotron">
 <ul id="permissionsList" class="list-group list-inline">
   <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
-    <?php if($webeditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
+    <?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
     <?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
     <?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
 </ul>
@@ -117,7 +117,7 @@
         
         
         <ul class="list-group">
-        <?php if(( $webeditorPermission==1)||($administratorPermission==1)){
+        <?php if(( $webEditorPermission==1)||($administratorPermission==1)){
         echo '<a class="bottoneCP" href="ammEPICAC.php"><li class="list-group-item quadrettone"><img id="logoAvatar" class="img-responsive" src="../../../OggiSTI/Assets/Img/HMRlogo.svg" alt="Logo HMR">
         Pannello di controllo sito web</li></a>';
         } ?>

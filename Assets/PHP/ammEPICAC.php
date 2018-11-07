@@ -1,17 +1,8 @@
 <?php
-	session_start();
-	$autore = $_SESSION['userLogin'];
-	$administratorPermission = $_SESSION['administratorPermission'];
-	$webEditorPermission = $_SESSION['webEditorPermission'];
-	$editorPermission = $_SESSION['editorPermission'];
-	$reviserPermission = $_SESSION['reviserPermission'];
 
-
-
-   
-    if(!isset($_SESSION['userLogin'])) {
-        header('Location: ../../../../amministrazione/asset/html/no_login.php?error=inv_access');
-    }
+	include('sessionSet.php');
+	include('controlLogged.php');
+	 
 ?>
 
 
@@ -69,37 +60,21 @@
 		</nav>
 
     
-
-		<div class="text-right iconaUser"><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $autore; ?></a></div>
+	
 
 		<div class="jumbotron">
-			<ul id="briciole">
-				<li><a href="../../../amministrazione/asset/html/welcome.php">Homepage amministrazione</a></li>	
-				<li>&gt; <a href="#" class="active">Amministrazione web editor</a></li>
+			<ul id="permissionsList" class="list-group list-inline">
+			<?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
+				<?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
+				<?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
+				<?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
 			</ul>
-
+			<a href="welcome.php"><span class="text-right iconaUser"><span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?></span></a>
 			
+			<br class="stop" />
 
 			<h1 id="titoloPannelloControllo">Pannello di controllo Web Editor</h1>
 
-			<br/>
-
-        
-
-			<h2><small>Utente: </small><?php echo $nome_utente ." ". $cognome_utente; ?></h2>
-
-			<h2 id="permessi"><small>permessi: </small></h2> 
-
-				<ul id="listaPermessi" class="list-group list-inline">
-					<?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
-					<?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
-					<?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
-					<?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
-				</ul>
-
-				<br class="stop"/>
-
-        
 
 			<h3>Avvenimenti</h3>
 
