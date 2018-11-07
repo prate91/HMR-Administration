@@ -2,8 +2,6 @@
     include('../PHP/sessionSet.php');
 	require("functions.php");
 	
-	//header('Content-Type : application/json');
-	
 	$campi_tabella = array(
         'AuthId',
 		'Username',
