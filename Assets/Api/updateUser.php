@@ -34,7 +34,7 @@
 //
 // ////////////////////////////////////////////////////////////////////////
 
-require("../../../../Config/UsersConfig.php");
+require("../../../../Config/Users_config_adm.php");
 
 
 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      * Escaped text string (user and password)
      */
     $password = isset($_POST["password"]) ? $_POST['password'] : '';
-    $password = mysqli_real_escape_string($connUtenti, $password);
+    $password = mysqli_real_escape_string($users_conn_adm, $password);
     $IdPp = isset($_POST["selectPerson"]) ? $_POST['selectPerson'] : ''; 
     $permissions = isset($_POST['permissions']) ? $_POST['permissions'] : array();
     if (!count($permissions)) {
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if(isset($_POST['btnCreateUser'])) {
 
     $user = isset($_POST["username"]) ? $_POST['username'] : '';
-    $user = mysqli_real_escape_string($connUtenti, $user);
+    $user = mysqli_real_escape_string($users_conn_adm, $user);
     /**
      * Query of insertion of user data into table admin
      */
@@ -111,7 +111,7 @@ if(isset($_POST['btnCreateUser'])) {
      * Execute the query
      */
     if($ok ==1 ){
-        $result = mysqli_query($connUtenti, $toinsert);	//order executes
+        $result = mysqli_query($users_conn_adm, $toinsert);	//order executes
     }
 
     /**
@@ -143,7 +143,7 @@ if(isset($_POST['btnUpdateUser'])) {
      * Execute the query
      */
     if($ok ==1 ){
-        $result = mysqli_query($connUtenti, $toinsert);	//order executes
+        $result = mysqli_query($users_conn_adm, $toinsert);	//order executes
     }
     /** 
      * Redirection

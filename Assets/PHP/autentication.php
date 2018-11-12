@@ -40,7 +40,7 @@
 
 
 //include("../Api/configUtenti.php");
-require("../../../../Config/UsersConfig.php");
+require("../../../../Config/Users_config_adm.php");
 session_start();
 if(isset($_SESSION['userLogin'])) {
     header('Location: welcome.php');
@@ -48,11 +48,11 @@ if(isset($_SESSION['userLogin'])) {
    
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 // username and password sent from form 
-  $myusername = mysqli_real_escape_string($connUtenti,$_POST['username']);
-  $mypassword = mysqli_real_escape_string($connUtenti,$_POST['password']); 
+  $myusername = mysqli_real_escape_string($users_conn_adm,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($users_conn_adm,$_POST['password']); 
   $mypassword = MD5($mypassword); 
   $sql = "SELECT AuthId, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
-  $result = mysqli_query($connUtenti,$sql);
+  $result = mysqli_query($users_conn_adm,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   $active = $row['active'];
   $count = mysqli_num_rows($result);

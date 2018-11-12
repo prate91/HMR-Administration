@@ -37,13 +37,13 @@
 //
 // ////////////////////////////////////////////////////////////////////////
 
-require("../../../../Config/UsersConfig.php");
+require("../../../../Config/Users_config_adm.php");
 
 session_start();
 
 $user_check = $_SESSION['userLogin'];
 
-$ses_sql = mysqli_query($connUtenti,"SELECT Username FROM admin WHERE Username = '$user_check' ");
+$ses_sql = mysqli_query($users_conn_adm,"SELECT Username FROM admin WHERE Username = '$user_check' ");
 
 $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
 

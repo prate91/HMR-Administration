@@ -48,11 +48,11 @@
   */
 function loadDataUsers($query, $tableFiels)
 {
-	require("../../../../Config/UsersConfig.php");
+	require("../../../../Config/Users_config_adm.php");
 		
 	$result = array();
 	$i = 0;
-	$queryResult = mysqli_query($connUtenti, $query);
+	$queryResult = mysqli_query($users_conn_adm, $query);
 	if($queryResult != false && mysqli_num_rows($queryResult) > 0)
 	{
 		while($row = mysqli_fetch_assoc($queryResult))
@@ -84,11 +84,11 @@ function loadDataUsers($query, $tableFiels)
   */
 function loadDataEpicac($query, $tableFiels)
 {
-	require("../../../../Config/EPICACConfig.php");
+	require("../../../../Config/EPICAC_config_rd.php");
 		
 	$result = array();
 	$i = 0;
-	$queryResult = mysqli_query($connEpicac, $query);
+	$queryResult = mysqli_query($EPICAC_conn_rd, $query);
 	if($queryResult != false && mysqli_num_rows($queryResult) > 0)
 	{
 		while($row = mysqli_fetch_assoc($queryResult))

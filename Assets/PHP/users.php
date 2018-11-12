@@ -38,7 +38,7 @@
 //
 // ///////////////////////////////////////////////////////////////////////////
 
-    require("../../../../Config/UsersConfig.php");
+    require("../../../../Config/Users_config_adm.php");
     include('sessionSet.php');
     include('controlLogged.php');
     if($administratorPermission==0) {
