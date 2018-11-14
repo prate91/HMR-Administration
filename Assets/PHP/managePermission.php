@@ -95,16 +95,7 @@ class Permission {
 		$this->removePermission(self::ADMIN);
 		return $this;
     }
-     /**
-	 * @return Permission $this
-	 */
-	public function checkAdmin() {
-        if(($this->permissions & self::ADMIN) == self::ADMIN){
-            return true;
-        }else{
-            return false;
-        }
-	}
+    
 	/**
 	 * @return Permission $this
 	 */
@@ -119,16 +110,7 @@ class Permission {
 		$this->removePermission(self::WEBEDITOR);
 		return $this;
     }
-    /**
-	 * @return Permission $this
-	 */
-	public function checkWebEditor() {
-        if(($this->permissions & self::WEBEDITOR) == self::WEBEDITOR){
-            return true;
-        }else{
-            return false;
-        }
-	}
+   
 	/**
 	 * @return Permission $this
 	 */
@@ -143,16 +125,7 @@ class Permission {
 		$this->removePermission(self::OGGISTIEDITOR);
 		return $this;
     }
-    /**
-	 * @return Permission $this
-	 */
-	public function checkOggiSTIEditor() {
-        if(($this->permissions & self::OGGISTIEDITOR) == self::OGGISTIEDITOR){
-            return true;
-        }else{
-            return false;
-        }
-	}
+    
 	/**
 	 * @return Permission $this
 	 */
@@ -167,11 +140,14 @@ class Permission {
 		$this->removePermission(self::OGGISTIREVISER);
 		return $this;
     }
-    /**
+
+	 /**
+	 * Checking a Permission
+	 *  
 	 * @return Permission $this
 	 */
-	public function checkOggiSTIReviser() {
-        if(($this->permissions & self::OGGISTIREVISER) == self::OGGISTIREVISER){
+	public function checkPermission($PERMISSION) {
+        if(($this->permissions & $PERMISSION) == $PERMISSION){
             return true;
         }else{
             return false;

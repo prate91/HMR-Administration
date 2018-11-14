@@ -63,10 +63,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['userLogin'] = $myusername;
     $_SESSION['authId'] = $row["AuthId"];
     $permission = new Permission(intval($row["Permissions"]));
-    $_SESSION['administratorPermission'] = $permission->checkAdmin();
-    $_SESSION['webEditorPermission'] = $permission->checkWebEditor();
-    $_SESSION['editorPermission'] = $permission->checkOggiSTIEditor();
-    $_SESSION['reviserPermission'] =  $permission->checkOggiSTIReviser();
+    $_SESSION['administratorPermission'] = $permission->checkPermission(Permission::ADMIN);
+    $_SESSION['webEditorPermission'] = $permission->checkPermission(Permission::WEBEDITOR);
+    $_SESSION['editorPermission'] = $permission->checkPermission(Permission::OGGISTIEDITOR);
+    $_SESSION['reviserPermission'] =  $permission->checkPermission(Permission::OGGISTIREVISER);
     $_SESSION['idPp_Id'] = $row["IdPp_Id"];
     $_SESSION['nome_completo'] = $row["nome"]." ".$row["cognome"];
     $_SESSION['eventDate'] = "";

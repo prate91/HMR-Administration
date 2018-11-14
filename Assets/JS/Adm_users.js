@@ -71,51 +71,12 @@ const OGGISTIEDITOR = 256;
 const OGGISTIREVISER = 512;
 
 /**
- * Check if is admin
+ * Check permission
  * 
- * @param {int} permission 
+ * @param {int} permissionUser 
  */
-function checkAdmin(permission) {
-    if ((permission & ADMIN) == ADMIN) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/**
- * Check if is WebEditor
- * 
- * @param {int} permission 
- */
-function checkWebEditor(permission) {
-    if ((permission & WEBEDITOR) == WEBEDITOR) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/**
- * Check if is OggiSTI editor
- * 
- * @param {int} permission 
- */
-function checkOggiSTIEditor(permission) {
-    if ((permission & OGGISTIEDITOR) == OGGISTIEDITOR) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/**
- * Check if is OggiSTI Reviser
- * 
- * @param {int} permission 
- */
-function checkOggiSTIReviser(permission) {
-    if ((permission & OGGISTIREVISER) == OGGISTIREVISER) {
+function checkPermission(permissionUser, PERMISSION) {
+    if ((permissionUser & PERMISSION) == PERMISSION) {
         return true;
     } else {
         return false;
@@ -168,16 +129,16 @@ $(document).ready(function () {
             var perms = item.Permissions;
             //$("#perms").val(perms);
             var textPerms = "";
-            if (checkAdmin(perms)) {
+            if (checkPermission(perms, ADMIN)) {
                 textPerms += "<strong>A</strong>/";
             }
-            if (checkWebEditor(perms)) {
+            if (checkPermission(perms, WEBEDITOR)) {
                 textPerms += "<strong>WE</strong>/";
             }
-            if (checkOggiSTIEditor(perms)) {
+            if (checkPermission(perms, OGGISTIEDITOR)) {
                 textPerms += "<strong>OE</strong>/";
             }
-            if (checkOggiSTIReviser(perms)) {
+            if (checkPermission(perms, OGGISTIREVISER)) {
                 textPerms += "<strong>OR</strong>/";
             }
 
@@ -215,16 +176,16 @@ $(document).ready(function () {
                 var perms = item.Permissions;
                 //$("#perms").val(perms);
                 $("input[value='administratorPermission']").prop({
-                    checked: checkAdmin(perms)
+                    checked: checkPermission(perms, ADMIN)
                 });
                 $("input[value='webEditorPermission']").prop({
-                    checked: checkWebEditor(perms)
+                    checked: checkPermission(perms, WEBEDITOR)
                 });
                 $("input[value='editorPermission']").prop({
-                    checked: checkOggiSTIEditor(perms)
+                    checked: checkPermission(perms, OGGISTIEDITOR)
                 });
                 $("input[value='reviserPermission']").prop({
-                    checked: checkOggiSTIReviser(perms)
+                    checked: checkPermission(perms, OGGISTIREVISER)
                 });
 
             });
