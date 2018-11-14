@@ -9,105 +9,109 @@ switch ($errore) {
         $err_login = "L'username o la password sono sbagliati";
 }
 
-include("../api/configUtenti.php");
+require("../../../../Config/Users_config_adm.php");
+require_once('managePermission.php');
    session_start();
    
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($OggiSTI_conn_adm,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($OggiSTI_conn_adm,$_POST['password']); 
-      $mypassword = MD5($mypassword); 
-          
-      $sql = "SELECT id_auth, nome, cognome, mail, amministratore, webeditor, redattore, revisore FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($OggiSTI_conn_adm,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         //session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         $_SESSION['nome_utente'] = $row["nome"];
-         $_SESSION['cognome_utente'] = $row["cognome"];
-         $_SESSION['amministratore'] = $row["amministratore"];
-         $_SESSION['webeditor'] = $row["webeditor"];
-         $_SESSION['redattore'] = $row["redattore"];
-         $_SESSION['revisore'] = $row["revisore"];
-         $_SESSION['nome_completo'] = $row["nome"]." ".$row["cognome"];
-         $_SESSION['data_evento'] = "";
-          $_SESSION['titolo_ita'] = "";
-          $_SESSION['titolo_eng']  = "";  
-          $_SESSION['abstr_ita'] = "";
-          $_SESSION['abstr_eng'] = "";
-          $_SESSION['desc_ita'] = "";
-        $_SESSION['desc_eng'] = "";
-        $_SESSION['keywords'] = "";
-          
-          
-          
-         header("location: welcome.php");
-      }else {
-         header("location: no_login.php?error=inv_user_password");
-      }
-   }
-
+   
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+// username and password sent from form 
+  $myusername = mysqli_real_escape_string($users_conn_adm,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($users_conn_adm,$_POST['password']); 
+  $mypassword = MD5($mypassword); 
+  $sql = "SELECT AuthId, Permissions, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
+  $result = mysqli_query($users_conn_adm,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  $active = $row['active'];
+  $count = mysqli_num_rows($result);
+  // If result matched $myusername and $mypassword, table row must be 1 row
+  if($count == 1) {
+    //session_register("myusername");
+    $_SESSION['userLogin'] = $myusername;
+    $_SESSION['authId'] = $row["AuthId"];
+    $permission = new Permission(intval($row["Permissions"]));
+    $_SESSION['administratorPermission'] = $permission->checkAdmin();
+    $_SESSION['webEditorPermission'] = $permission->checkWebEditor();
+    $_SESSION['editorPermission'] = $permission->checkOggiSTIEditor();
+    $_SESSION['reviserPermission'] =  $permission->checkOggiSTIReviser();
+    $_SESSION['idPp_Id'] = $row["IdPp_Id"];
+    $_SESSION['nome_completo'] = $row["nome"]." ".$row["cognome"];
+    $_SESSION['eventDate'] = "";
+    $_SESSION['itaTitle'] = "";
+    $_SESSION['engTitle']  = "";  
+    $_SESSION['itaAbstract'] = "";
+    $_SESSION['engAbstract'] = "";
+    $_SESSION['itaDescription'] = "";
+    $_SESSION['engDescription'] = "";
+    $_SESSION['keywords'] = "";
+    include '../Api/extractPersonInformation.php';
+    header("location: welcome.php");
+  }else {
+    header("location: no_login.php?error=inv_user_password");
+  }
+}
 ?>
 
-<!DOCTYPE html>
-<html lang='it'>
-<head>
-<meta charset='utf-8'>
-<link rel="icon" type="image/png" href="../img/HMR-Icon16x16.png" />
-<link rel='stylesheet' href='../../../oggiSTI/asset/css/bootstrap.css'>
-<link rel='stylesheet' href='../../../oggiSTI/asset/css/style.css'>
-<link rel='stylesheet' href='../css/dcalendar.picker.css'>
-<script src='../js/jquery-3.2.0.min.js'></script>
-<script src='../../../oggiSTI/asset/js/bootstrap.js'></script>
-<script src='../js/javascript.js'></script>
-<script src='../js/dcalendar.picker.js'></script>
+
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
+
+<title>Autenticazione - HMR</title>
+
+
+
+<link rel='stylesheet' href='../../../Assets/Libs/Bootstrap/CSS/bootstrap.css'>
+<script src='../../../Assets/Libs/Bootstrap/JS/bootstrap.js'></script>
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 
-<title>Welcome - Oggi nella storia dell'informatica - HMR</title>
+<!-- Load HMR CSS styles & fonts -->
+<link rel="stylesheet" type="text/css" href="../../../HMR_Style.css">
+
+<!-- Load Administration styles & fonts -->
+<link rel="stylesheet" type="text/css" href="../CSS/Administration_Style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<!-- Load favorite icon -->
+<link rel="icon" type="image/png" href="../../../Assets/Images/HMR_2017g_GC-WebFavIcon16x16.png" />
+
+<!-- Load HMR standard libraries -->
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script> 
+<script type='text/javascript' src='../../../EPICAC/JSwebsite/searchAndSharing.js'></script>
+<script type='text/javascript' src='../../../Assets/JS/HMR_CreaHTML.js'></script>
+
+
 </head>
 <body>
-    
-   <!-- header -->
-	<div class="banner">
-	<table>
-	<tr>
-	<td>
-	<a href="#"> <img src='../img/HMRlogo.svg' alt='Logo HMR'> </a>
-	</td>
-	<td>
-	<a href="#"><h1>Hackerando la Macchina Ridotta</h1></a> <b>storia e archeologia sperimentale dell'informatica</b>
-	</td>
-	</tr>
-	</table>
-	</div>
-	<div class="menuNavigazione">
-		<?PHP
-		include('menuNavigazione.php');
-		?>
-	</div>
-	
-	
-	
-	
-	
-<!-- Contenuto della pagina -->
-	<div class="content">
-	<div class="jumbotron">
-	<img id="logoAvatar" class="img-responsive" src="../img/HMRlogo.svg" alt="Logo HMR">
-	<br/>
-	<div class="alert alert-danger">
+
+<!-- Standard HMRWeb header ///////////////////////////////////////////////////
+// For banner:
+// - set level, 1 = "../", 2 = "../../" and so on;
+// - set image, file name and extension, no path, has to be in /Assets/Images.
+// For menu:
+// - set level, same as banner;
+// - set active menu entry, 1=Cronologia, 2=Eventi and so on.  -->
+<div class="HMR_Banner">
+  <script> creaHeader(3, 'HMR_2017g_GC-WebHeaderRite-270x105-3.png') </script>
+</div>
+
+<div id="HMR_Menu" class="HMR_Menu" >
+    <script> creaMenu(3, 0) </script>
+</div>
+  
+<span class="stop"></span>
+  
+<!-- Content -->
+<div class="HMR_Content">
+
+  <div id="headerLogin">
+<h1><span class="glyphicon glyphicon-lock"></span> Login</h1>
+</div>
+<div class="jumbotron">
+<div class="alert alert-danger">
 		<strong>Errore!</strong> <?php echo $err_login; ?>
 	</div>
-	 <form class="form-horizontal" action = "" method = "post">
+  <form class="form-horizontal" action = "" method = "post">
     <div class="form-group">
       <label class="control-label col-sm-2" for="user">Username:</label>
       <div class="col-sm-6">
@@ -133,33 +137,21 @@ include("../api/configUtenti.php");
       </div>
     </div>
   </form>
-      
 </div>
-		
-		</div>
-		
-<div class="footer">
-	<table>
-		<tr>
-		<td>
-		<img src='../img/by-nc-nd.eu.png' alt='CC by nc nd'>
-		</td>
-		<td>
-		<cite>Copyright © 2009-2016 Giovanni A. Cignoni<br/>
-		Pagina creata: 03/08/2017; 
-        <script type="text/javascript">
+    
+    </div>
 
-  lastmod = document.lastModified
-  lastmoddate = Date.parse(lastmod)
-  if (lastmoddate != 0) {
-    document.writeln("ultima modifica: " + lastmod)
-  }
+<!-- Standard HMRWeb footer////////////////////////////////////////////////////
+// Set:
+// - level, 1 = "../", 2 = "../../" and so on;
+// - set copyright start year, YYYY
+// - set copyright end year, YYYY;
+// - set copyright owner, default "Progetto HMR";
+// - set date of page creation, YYYY/MM/DD.  -->
 
-</script></cite>
-		</td>
-		</tr>
-	</table>
-     <p id="loginBtn"><a href="autenticazione.php">Autenticazione</a></p>
-	</div>
+<div class="HMR_Footer">    
+    <script> creaFooter(3, '2017', '2018', 'Nicolò Pratelli - G.A.Cignoni', '07/13/2017') </script>
+</div>
+    
 </body>
 </html>
