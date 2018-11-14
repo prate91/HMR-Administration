@@ -6,14 +6,11 @@ require("functions.php");
 $tableFields = array(
 	'AuthId',
 	'Username',
-	'AdministratorPermission',
-	'WebEditorPermission',  
-	'EditorPermission', 
-	'ReviserPermission' , 
+	'Permissions',
 	'IdPp_Id'
 );
 
-$query = "SELECT AuthId, Username, AdministratorPermission, WebEditorPermission,  EditorPermission, ReviserPermission, IdPp_Id FROM admin ORDER BY Username";
+$query = "SELECT AuthId, Username, Permissions, IdPp_Id FROM admin ORDER BY Username";
 echo loadDataUsers($query, $tableFields);
    
 	

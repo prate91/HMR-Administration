@@ -58,8 +58,8 @@ function loadDataUsers($query, $tableFiels)
 		while($row = mysqli_fetch_assoc($queryResult))
 		{
 			$result[$i] = array();
-			foreach($tableFiels as $campo)
-				$result [$i][$campo] = $row[$campo];
+			foreach($tableFiels as $field)
+				$result [$i][$field] = $row[$field];
 			$i++;				
 		}
 		
@@ -94,8 +94,8 @@ function loadDataEpicac($query, $tableFiels)
 		while($row = mysqli_fetch_assoc($queryResult))
 		{
 			$result[$i] = array();
-			foreach($tableFiels as $campo)
-				$result [$i][$campo] = $row[$campo]; // utf8_encode( $row[$campo])
+			foreach($tableFiels as $field)
+				$result [$i][$field] = $row[$field];
 			$i++;				
 		}
 		

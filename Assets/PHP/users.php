@@ -131,26 +131,27 @@
         <thead>
             <tr>
                 <th>Username</th>
-                <th>Amministratore</th>
-                <th>Web Editor</th>
-                <th>Redattore</th>
-                <th>Revisore</th>
+                <th>Permessi</th>
                 <th>IdPp</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>Username</th>
-                <th>Amministratore</th>
-                <th>Web Editor</th>
-                <th>Redattore</th>
-                <th>Revisore</th>
+                <th>Permessi</th>
                 <th>IdPp</th>
             </tr>
         </tfoot>
         <tbody id='corpoListaUtenti'></tbody>
         </table>
     
+    <h2>Legenda permessi</h2>
+    <ul>
+    <li><strong>A</strong>: Admin</li>
+    <li><strong>WE</strong>: Web Editor</li>
+    <li><strong>OE</strong>: OggiSTI Editor</li>
+    <li><strong>OR</strong>: OggiSTI Reviser</li>
+    </ul>
 
     <!-- Create a new User ------------------------------>
 
@@ -168,8 +169,8 @@
        
         <!-- Select username for change -->
         <div id='selectFormUser' class="form-group" hidden>
-        <label for="usersOprion">Selezionare l'utente al quale si vuole cambiare password</label>
-        <select class="form-control" id="usersOprion" name="selectUtente"></select>
+        <label for="usersOption">Selezionare l'utente che si vuole modificare</label>
+        <select class="form-control" id="usersOption" name="selectUtente"></select>
         </div> 
         
         <!-- Username field-->
@@ -198,7 +199,7 @@
         </div>
 
         <!-- Permission fields -->
-
+        <!-- <input type="text" name="perms" class="form-control" id="perms" readonly value=""> -->
         <div id="permissions" hidden>
         <p>Seleziona i permessi da applicare al nuovo utente</p>
          <div class='checkbox'>
@@ -251,16 +252,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title">Cambia la password</h4>
+                     <h4 class="modal-title">Mudifica utente</h4>
                 </div>
                 <div class="modal-body">
-                     <p class="alert alert-warning">Stai cambiando la password. Per tornare indietro clicca su annulla.</p><br/>
+                     <p class="alert alert-warning">Stai modificando l'utente. Per tornare indietro clicca su annulla.</p><br/>
                     <p id="passwordAdvise" class="alert alert-warning">Ricordati di scrivere la nuova password da qualche parte<br/>
                     <span id="passwordOutput"></span> </p>
                  </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                    <input type='submit' name='btnUpdateUser' id='btnUpdateUser' class='btn btn-info' value='Cambia password'>
+                    <input type='submit' name='btnUpdateUser' id='btnUpdateUser' class='btn btn-info' value='Modifica utente'>
                 </div>
             </div>
         </div>

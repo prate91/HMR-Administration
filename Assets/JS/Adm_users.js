@@ -41,6 +41,87 @@
 //
 // ////////////////////////////////////////////////////////////////////////
 
+/**
+ * Check Permissions
+ */
+/**
+ * Bitmasks as decimal values
+ * HMR permissions
+ * 1 =      00000000 00000001 HMR Admin
+ * 2 =      00000000 00000010 HMR Web editor
+ * 4 =      00000000 00000100
+ * 8 =      00000000 00001000
+ * 16 =     00000000 00010000
+ * 32 =     00000000 00100000
+ * 64 =     00000000 01000000
+ * 128 =    00000000 10000000
+ * OggiSTI permissions
+ * 256 =    00000001 00000000 OggiSTI editor
+ * 512 =    00000010 00000000 OggiSTI reviser
+ * 1024 =   00000100 00000000
+ * 2048 =   00001000 00000000
+ * 4096 =   00010000 00000000
+ * 8192 =   00100000 00000000
+ * 16384 =  01000000 00000000
+ * 32768 =  10000000 00000000
+ */
+const ADMIN = 1;
+const WEBEDITOR = 2;
+const OGGISTIEDITOR = 256;
+const OGGISTIREVISER = 512;
+
+/**
+ * Check if is admin
+ * 
+ * @param {int} permission 
+ */
+function checkAdmin(permission) {
+    if ((permission & ADMIN) == ADMIN) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Check if is WebEditor
+ * 
+ * @param {int} permission 
+ */
+function checkWebEditor(permission) {
+    if ((permission & WEBEDITOR) == WEBEDITOR) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Check if is OggiSTI editor
+ * 
+ * @param {int} permission 
+ */
+function checkOggiSTIEditor(permission) {
+    if ((permission & OGGISTIEDITOR) == OGGISTIEDITOR) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Check if is OggiSTI Reviser
+ * 
+ * @param {int} permission 
+ */
+function checkOggiSTIReviser(permission) {
+    if ((permission & OGGISTIREVISER) == OGGISTIREVISER) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 /**
  * Random passwords generator
@@ -76,6 +157,7 @@ $(document).ready(function () {
     var usersTableHeader = "";
     var peopleList;
     var urlPeople = "../Api/extractPeople.php";
+    var urlPermission = "../Api/getPermissions.php";
 
     /**
     * AJAX call for extraction and costruction of users table
@@ -83,12 +165,25 @@ $(document).ready(function () {
     */
     $.getJSON(urlUsers, function (result) {
         $.each(result, function (index, item) {
+            var perms = item.Permissions;
+            //$("#perms").val(perms);
+            var textPerms = "";
+            if (checkAdmin(perms)) {
+                textPerms += "<strong>A</strong>/";
+            }
+            if (checkWebEditor(perms)) {
+                textPerms += "<strong>WE</strong>/";
+            }
+            if (checkOggiSTIEditor(perms)) {
+                textPerms += "<strong>OE</strong>/";
+            }
+            if (checkOggiSTIReviser(perms)) {
+                textPerms += "<strong>OR</strong>/";
+            }
+
             // Row construction for table
             var row = "<tr><td>" + item.Username + "</td>" +
-                "<td>" + item.AdministratorPermission + "</td>" +
-                "<td>" + item.WebEditorPermission + "</td>" +
-                "<td>" + item.EditorPermission + "</td>" +
-                "<td>" + item.ReviserPermission + "</td>" +
+                "<td>" + textPerms + "</td>" +
                 "<td>" + item.IdPp_Id + "</td>";
             usersTableHeader += row;
             $("#corpoListaUtenti").html(usersTableHeader);
@@ -96,7 +191,7 @@ $(document).ready(function () {
             usersList += "<option value='" + item.Username + "'>" + item.Username + "</option>";
         });
         $('#usersList').DataTable();
-        $("#usersOprion").html(usersList);
+        $("#usersOption").html(usersList);
     });
 
     /**
@@ -109,6 +204,34 @@ $(document).ready(function () {
         $("#optionPeople").html(peopleList);
     });
 
+    /**
+    * On change event that set permits
+    */
+    $('#usersOption').on('change', function () {
+        var username = this.value;
+        $.getJSON(urlPermission, { "username": username }, function (result) {
+            $.each(result, function (index, item) {
+                // Row construction for table
+                var perms = item.Permissions;
+                //$("#perms").val(perms);
+                $("input[value='administratorPermission']").prop({
+                    checked: checkAdmin(perms)
+                });
+                $("input[value='webEditorPermission']").prop({
+                    checked: checkWebEditor(perms)
+                });
+                $("input[value='editorPermission']").prop({
+                    checked: checkOggiSTIEditor(perms)
+                });
+                $("input[value='reviserPermission']").prop({
+                    checked: checkOggiSTIReviser(perms)
+                });
+
+            });
+
+        });
+        //$("#perms").html("ciao");
+    });
     /**
      * On click event that generate random password
      */

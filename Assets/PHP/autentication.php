@@ -41,6 +41,7 @@
 
 //include("../Api/configUtenti.php");
 require("../../../../Config/Users_config_adm.php");
+require_once('managePermission.php');
 session_start();
 if(isset($_SESSION['userLogin'])) {
     header('Location: welcome.php');
@@ -51,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $myusername = mysqli_real_escape_string($users_conn_adm,$_POST['username']);
   $mypassword = mysqli_real_escape_string($users_conn_adm,$_POST['password']); 
   $mypassword = MD5($mypassword); 
-  $sql = "SELECT AuthId, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
+  $sql = "SELECT AuthId, Permissions, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
   $result = mysqli_query($users_conn_adm,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   $active = $row['active'];
@@ -61,10 +62,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //session_register("myusername");
     $_SESSION['userLogin'] = $myusername;
     $_SESSION['authId'] = $row["AuthId"];
-    $_SESSION['administratorPermission'] = $row["AdministratorPermission"];
-    $_SESSION['webEditorPermission'] = $row["WebEditorPermission"];
-    $_SESSION['editorPermission'] = $row["EditorPermission"];
-    $_SESSION['reviserPermission'] = $row["ReviserPermission"];
+    $permission = new Permission(intval($row["Permissions"]));
+    $_SESSION['administratorPermission'] = $permission->checkAdmin();
+    $_SESSION['webEditorPermission'] = $permission->checkWebEditor();
+    $_SESSION['editorPermission'] = $permission->checkOggiSTIEditor();
+    $_SESSION['reviserPermission'] =  $permission->checkOggiSTIReviser();
     $_SESSION['idPp_Id'] = $row["IdPp_Id"];
     $_SESSION['nome_completo'] = $row["nome"]." ".$row["cognome"];
     $_SESSION['eventDate'] = "";
