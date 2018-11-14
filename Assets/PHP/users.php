@@ -121,37 +121,47 @@
   
 <span class="stop"></span>
 <div class="Administration_content">
-    <div class="text-center">
-    <button type="button" id="indietroPreview" class="btn btn-info hidden">Indietro</button>
-    </div>
-        <div class='jumbotron'>
-        <?php echo $notizia; ?>
-        <h1 id="titoloPannelloControllo">Gestione Utenti</h1>
-         <table id='usersList' class='table table-striped display'  width='100%' cellspacing='0'>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Permessi</th>
-                <th>IdPp</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Username</th>
-                <th>Permessi</th>
-                <th>IdPp</th>
-            </tr>
-        </tfoot>
-        <tbody id='corpoListaUtenti'></tbody>
-        </table>
-    
-    <h2>Legenda permessi</h2>
-    <ul>
-    <li><strong>A</strong>: Admin</li>
-    <li><strong>WE</strong>: Web Editor</li>
-    <li><strong>OE</strong>: OggiSTI Editor</li>
-    <li><strong>OR</strong>: OggiSTI Reviser</li>
-    </ul>
+    <div class='jumbotron'>
+
+<ul id="permissionsList" class="list-group list-inline">
+<?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
+<?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
+<?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
+<?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
+</ul>
+
+<span class="text-right iconaUser"><a href="welcome.php">
+<span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?></a>
+</span>
+<br class="stop"/>
+
+    <?php echo $notizia; ?>
+    <h1 id="titoloPannelloControllo">Gestione Utenti</h1>
+        <table id='usersList' class='table table-striped display'  width='100%' cellspacing='0'>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Permessi</th>
+            <th>IdPp</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Username</th>
+            <th>Permessi</th>
+            <th>IdPp</th>
+        </tr>
+    </tfoot>
+    <tbody id='corpoListaUtenti'></tbody>
+    </table>
+
+<h2>Legenda permessi</h2>
+<ul>
+<li><strong>A</strong>: Admin</li>
+<li><strong>WE</strong>: Web Editor</li>
+<li><strong>OE</strong>: OggiSTI Editor</li>
+<li><strong>OR</strong>: OggiSTI Reviser</li>
+</ul>
 
     <!-- Create a new User ------------------------------>
 
