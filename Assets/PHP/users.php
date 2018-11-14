@@ -215,16 +215,16 @@
         <div id="permissions" hidden>
         <p>Seleziona i permessi da applicare al nuovo utente</p>
          <div class='checkbox'>
-            <label><input type='checkbox' name='permissions[]' value='administratorPermission'>Amministratore</label>
+            <label><input type='checkbox' name='permissions[]' value='administratorPermission'>Admin</label>
         </div>
         <div class='checkbox'>
             <label><input type='checkbox' name='permissions[]' value='webEditorPermission'>Web Editor</label>
         </div>
         <div class='checkbox'>
-            <label><input type='checkbox' name='permissions[]' value='editorPermission'>Redattore</label>
+            <label><input type='checkbox' name='permissions[]' value='editorPermission'>OggiSTI Editor</label>
         </div>
         <div class='checkbox'>
-            <label><input type='checkbox' name='permissions[]' value='reviserPermission'>Revisore</label>
+            <label><input type='checkbox' name='permissions[]' value='reviserPermission'>OggiSTI Reviser</label>
         </div>
         </div>
 

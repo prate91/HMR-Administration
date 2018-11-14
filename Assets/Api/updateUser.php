@@ -108,11 +108,12 @@ if(isset($_POST['btnCreateUser'])) {
 
     $user = isset($_POST["username"]) ? $_POST['username'] : '';
     $user = mysqli_real_escape_string($users_conn_adm, $user);
+    $perm = $permissionClass->getPermissions();
     /**
      * Query of insertion of user data into table admin
      */
-    $toinsert = "INSERT INTO admin (Username, Passcode, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id) 
-    VALUES ('$user',MD5('$password'),'$administratorPermission','$webEditorPermission','$editorPermission','$reviserPermission', '$IdPp')";
+    $toinsert = "INSERT INTO admin (Username, Passcode, Permissions, IdPp_Id) 
+    VALUES ('$user',MD5('$password'),'$perm', '$IdPp')";
 
     /**
      * Control value of $ok, i.e. control if at least one permission is setted
