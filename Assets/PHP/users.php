@@ -190,7 +190,9 @@
 		<span id='helpPassword' class='help-block'>Inserisci una nuova password oppure generala automaticamente</span>
 		<button type='button' id='generatePassword' class='btn btn-info'>Genera</button>
         </div>
-        
+        <!-- Button show password field for user update -->
+        <button type="button" id="showPwField" class="btn btn-info hidden">Modifica password</button>
+
         <!-- Select person form people -->
         <div id="divOptionPeople" hidden>
         <label for="optionPeople">Selezionare la persona alla quale si vuole associare un account</label>

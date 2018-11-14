@@ -261,8 +261,7 @@ $(document).ready(function () {
         $("#createUser").show();
         $("#updateUser").hide();
         $("#sendButtonsGroup").show();
-
-
+        $("#showPwField").addClass("hidden");
     });
 
 
@@ -272,13 +271,21 @@ $(document).ready(function () {
     $("#btnUserUpdate").click(function () {
         $("#formUser").hide();
         $("#selectFormUser").show();
-        $("#formPassword").show();
+        $("#formPassword").hide();
         $("#divOptionPeople").hide();
         $("#permissions").show();
         $("#createUser").hide();
         $("#updateUser").show();
         $("#sendButtonsGroup").show();
+        $("#showPwField").removeClass("hidden");
+    });
 
+    /**
+     * On click event that show password field for update users
+     */
+    $("#showPwField").click(function () {
+        $("#formPassword").show();
+        $("#showPwField").addClass("hidden");
     });
 
 
