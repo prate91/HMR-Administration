@@ -55,7 +55,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "SELECT AuthId, Permissions, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
   $result = mysqli_query($users_conn_adm,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-  $active = $row['active'];
   $count = mysqli_num_rows($result);
   // If result matched $myusername and $mypassword, table row must be 1 row
   if($count == 1) {
