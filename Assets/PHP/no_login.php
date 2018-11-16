@@ -19,7 +19,7 @@ require_once('managePermission.php');
   $myusername = mysqli_real_escape_string($users_conn_adm,$_POST['username']);
   $mypassword = mysqli_real_escape_string($users_conn_adm,$_POST['password']); 
   $mypassword = MD5($mypassword); 
-  $sql = "SELECT AuthId, Permissions, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
+  $sql = "SELECT AuthId, Permissions, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
   $result = mysqli_query($users_conn_adm,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   $active = $row['active'];
