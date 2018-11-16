@@ -36,21 +36,21 @@
 ?>
 
 <div id="navbarHomeAdmin">
-<ul id="permissionsList" class="list-group list-inline">
-  <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
+    <ul id="permissionsList" class="list-group list-inline">
+    <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
     <?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
     <?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
     <?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
-</ul>
-<div class="text-right iconaUser">
- <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-    <span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?> <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-        <li><a href="welcome.php"><span class="glyphicon glyphicon-home"></span> Homepage</a>
-      <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
-  </div>
-</div>
+    </ul>
+    <div class="text-right iconaUser">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?> <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="welcome.php"><span class="glyphicon glyphicon-home"></span> Homepage admin</a>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+            </ul>
+        </div>
+    </div>
    </div>
    </div>
