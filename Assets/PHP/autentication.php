@@ -52,10 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $myusername = mysqli_real_escape_string($users_conn_adm,$_POST['username']);
   $mypassword = mysqli_real_escape_string($users_conn_adm,$_POST['password']); 
   $mypassword = MD5($mypassword); 
-  $sql = "SELECT AuthId, Permissions, AdministratorPermission, WebEditorPermission, EditorPermission, ReviserPermission, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
+  $sql = "SELECT AuthId, Permissions, IdPp_Id FROM admin WHERE Username = '$myusername' and Passcode = '$mypassword'";
   $result = mysqli_query($users_conn_adm,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-  $active = $row['active'];
   $count = mysqli_num_rows($result);
   // If result matched $myusername and $mypassword, table row must be 1 row
   if($count == 1) {
@@ -80,8 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../Api/extractPersonInformation.php';
     header("location: welcome.php");
   }else {
-    echo $count;
-    //header("location: no_login.php?error=inv_user_password");
+    header("location: no_login.php?error=inv_user_password");
   }
 }
 ?>
