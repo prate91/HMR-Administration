@@ -15,7 +15,7 @@
 }
 
 #navbarHomeAdmin{
-    
+
       width: 864px; /*60%*/
       margin:0 auto;
 }
@@ -23,7 +23,7 @@
 .jumbotron{
     width: 864px; /*60%*/
     /*margin: 36px auto 36px auto;*/
-    padding: 0 36px;
+    padding: 36px 36px;
     
 }
 
