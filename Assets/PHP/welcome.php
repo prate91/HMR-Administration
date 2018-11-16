@@ -52,9 +52,10 @@
 
 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
 
-<title>Amministrazione HMR - <?php echo $autore; ?></title>
+<title>Amministrazione HMR - <?php echo $briefName; ?></title>
 
 
+<script src='../JS/jquery-3.2.0.min.js'></script> 
 <link rel='stylesheet' href='../../../Assets/Libs/Bootstrap/CSS/bootstrap.css'>
 <script src='../../../Assets/Libs/Bootstrap/JS/bootstrap.js'></script>
 <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -94,26 +95,18 @@
 <div id="HMR_Menu" class="HMR_Menu" >
     <script> creaMenu(3, 0) </script>
 </div>
-	
-<span class="stop"></span>
-<div class="HMR_Content">    
-<div class="jumbotron">
-<ul id="permissionsList" class="list-group list-inline">
-  <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
-    <?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
-    <?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
-    <?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
-</ul>
-<span class="text-right iconaUser">
-    <span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?>
-   </span>
+    
+<?php
+    include 'navbarHomeAdmin.php';
+?>
     <br class="stop"/>
      
+<div class="Administration_content"> 
     <h1 id="titoloPannelloControllo">Pannello di controllo</h1>
 	<br/>
         
         
-        
+    <div class="listApplicationContent">
         
         
         <ul class="list-group">

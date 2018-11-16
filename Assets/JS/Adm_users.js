@@ -214,6 +214,7 @@ $(document).ready(function () {
      * On click event that show User creation form
      */
     $("#btnUserCreation").click(function () {
+        $("#userManager").show();
         $("#formUser").show();
         $("#selectFormUser").hide();
         $("#formPassword").show();
@@ -230,6 +231,7 @@ $(document).ready(function () {
      * On click event that show User update form
      */
     $("#btnUserUpdate").click(function () {
+        $("#userManager").show();
         $("#formUser").hide();
         $("#selectFormUser").show();
         $("#formPassword").hide();

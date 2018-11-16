@@ -33,43 +33,12 @@
 		<script> creaMenu(3, 0) </script>
 	</div>
 
-    
+    <?php
+    include 'navbarHomeAdmin.php';
+?>
 	<div class="HMR_Content">
     
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<button	type="button" class= "navbar-toggle" data-toggle="collapse" data-target="#nav-toggle">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-				<a class="navbar-brand" href="../../../amministrazione/asset/html/welcome.php"><img id="logoHMR" src="../../../oggiSTI/asset/img/HMRlogo.svg" alt="LOGO HMR"/></a>
-
-			</div>
-
-			<div class="collapse navbar-collapse" id="nav-toggle">
-				<ul class="nav	navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-				</ul>
-
-				<form class="navbar-form navbar-right" role="search">
-					<a class="btn btn-primary logout" href="../../../amministrazione/asset/html/logout.php">Log Out</a>
-				</form>
-			</div>
-		</nav>
-
-    
-	
-
 		<div class="jumbotron">
-			<ul id="permissionsList" class="list-group list-inline">
-			<?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
-				<?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
-				<?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
-				<?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
-			</ul>
-			<a href="welcome.php"><span class="text-right iconaUser"><span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?></span></a>
 			
 			<br class="stop" />
 
@@ -91,9 +60,17 @@
 
 		
 
-	<div class="HMR_Footer">
-	</div>
+<!-- Standard HMRWeb footer////////////////////////////////////////////////////
+// Set:
+// - level, 1 = "../", 2 = "../../" and so on;
+// - set copyright start year, YYYY
+// - set copyright end year, YYYY;
+// - set copyright owner, default "Progetto HMR";
+// - set date of page creation, YYYY/MM/DD.  -->
 
+<div class="HMR_Footer">    
+    <script> creaFooter(3, '2017', '2018', 'Nicolò Pratelli - G.A.Cignoni', '07/13/2017') </script>
+</div>
 </body>
 
 </html>

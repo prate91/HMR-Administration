@@ -120,59 +120,29 @@
 </div>
   
 <span class="stop"></span>
+
+<?php
+    include 'navbarHomeAdmin.php';
+?>
 <div class="Administration_content">
-    <div class='jumbotron'>
 
-<ul id="permissionsList" class="list-group list-inline">
-<?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Amministratore </li>';} ?> 
-<?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
-<?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Redattore</li>';} ?>
-<?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Revisore</li>';} ?>           
-</ul>
-
-<span class="text-right iconaUser"><a href="welcome.php">
-<span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?></a>
-</span>
 <br class="stop"/>
 
     <?php echo $notizia; ?>
     <h1 id="titoloPannelloControllo">Gestione Utenti</h1>
-        <table id='usersList' class='table table-striped display'  width='100%' cellspacing='0'>
-    <thead>
-        <tr>
-            <th>Username</th>
-            <th>Permessi</th>
-            <th>IdPp</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>Username</th>
-            <th>Permessi</th>
-            <th>IdPp</th>
-        </tr>
-    </tfoot>
-    <tbody id='corpoListaUtenti'></tbody>
-    </table>
 
-<h2>Legenda permessi</h2>
-<ul>
-<li><strong>A</strong>: Admin</li>
-<li><strong>WE</strong>: Web Editor</li>
-<li><strong>OE</strong>: OggiSTI Editor</li>
-<li><strong>OR</strong>: OggiSTI Reviser</li>
-</ul>
-
-    <!-- Create a new User ------------------------------>
+<!-- Create a new User ------------------------------>
 
     <!-- Button that open the form for user creation -->
-    <div class="btn-group">
-        <button type='button' id='btnUserCreation' class='btn btn-primary'>Crea un nuovo utente</button>
-         <button type='button' id='btnUserUpdate' class='btn btn-primary'>Modifica un utente</button>
-    </div> 
+    <div class="text-center">
+        <div class="btn-group">
+            <button type='button' id='btnUserCreation' class='btn btn-primary'>Crea un nuovo utente</button>
+            <button type='button' id='btnUserUpdate' class='btn btn-primary'>Modifica un utente</button>
+        </div> 
+    </div>
     
     <!-- BEGIN User creation -->
-    <div id="userManage">
+    <div id="userManager" hidden>
       
         <!-- BEGIN Form for user creation -->
 		<form id='addUser' method='post' action='../Api/updateUser.php'>
@@ -185,7 +155,7 @@
         
         <!-- Username field-->
 		<div id='formUser' class='form-group' hidden>
-        <p>Crea un nuovo utente</p>
+        <h2>Crea un nuovo utente</h2>
 		<label for='username'>Username</label>
 		<input type='text' name='username' class='form-control' id='username'/>
 		<span id='glyphiconUsername'></span>
@@ -207,13 +177,13 @@
         <div id="divOptionPeople" hidden>
         <label for="optionPeople">Selezionare la persona alla quale si vuole associare un account</label>
         <select class="form-control" id="optionPeople" name="selectPerson"></select>
-        <p>Se la persona a cui associare l'account non è presente nel database <a href="../../../EPICAC/PHP/newAuthorForm.php">inseriscila</a></p>
+        <p class="HMR_p">Se la persona a cui associare l'account non è presente nel database <a href="../../../EPICAC/PHP/newAuthorForm.php">inseriscila</a></p>
         </div>
 
         <!-- Permission fields -->
         <!-- <input type="text" name="perms" class="form-control" id="perms" readonly value=""> -->
         <div id="permissions" hidden>
-        <p>Seleziona i permessi da applicare al nuovo utente</p>
+        <h2>Seleziona i permessi da applicare al nuovo utente</h2>
          <div class='checkbox'>
             <label><input type='checkbox' name='permissions[]' value='administratorPermission'>Admin</label>
         </div>
@@ -254,10 +224,6 @@
                 </div>
             </div>
         </div>
-    </div>
-   
-
-
     <!-- Modal for confirm the update and recap password -->
     <div id="modalUpdateUser" class="modal fade">
         <div class="modal-dialog">
@@ -279,8 +245,39 @@
         </div>
     </div>
     </div>
-        </div>
          </form>
+
+         <!-- User table -->
+
+
+    <div id="usersTableContent">
+        <table id='usersList' class='table table-striped display'  width='100%' cellspacing='0'>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Permessi</th>
+            <th>IdPp</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Username</th>
+            <th>Permessi</th>
+            <th>IdPp</th>
+        </tr>
+    </tfoot>
+    <tbody id='corpoListaUtenti'></tbody>
+    </table>
+
+<h2>Legenda permessi</h2>
+<ul>
+<li><strong>A</strong>: Admin</li>
+<li><strong>WE</strong>: Web Editor</li>
+<li><strong>OE</strong>: OggiSTI Editor</li>
+<li><strong>OR</strong>: OggiSTI Reviser</li>
+</ul>
+    </div>
+    </div>
 
 <!-- Standard HMRWeb footer////////////////////////////////////////////////////
 // Set:
