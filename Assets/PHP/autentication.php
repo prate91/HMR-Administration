@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../Api/extractPersonInformation.php';
     header("location: welcome.php");
   }else {
-    header("location: no_login.php?error=inv_user_password");
+    //header("location: no_login.php?error=inv_user_password");
   }
 }
 ?>
