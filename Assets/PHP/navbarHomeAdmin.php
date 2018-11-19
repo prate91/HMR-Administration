@@ -49,7 +49,8 @@
             <span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?> <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li><a href="welcome.php"><span class="glyphicon glyphicon-home"></span> Homepage admin</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Impostazioni</a></li>
+                <!-- Next implementation -->
+                <!-- <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Impostazioni</a></li> -->
                 <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
             </ul>
         </div>
