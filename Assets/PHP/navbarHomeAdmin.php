@@ -36,13 +36,14 @@
 ?>
 
 <div id="navbarHomeAdmin">
-    <ul id="permissionsList" class="list-group list-inline">
-    <?php if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Admin </li>';} ?> 
-    <?php if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
-    <?php if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> OggiSTI Editor</li>';} ?>
-    <?php if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> OggiSTI Reviser</li>';} ?>           
-    </ul>
     <div class="text-right iconaUser">
+       <!-- <ul id="permissionsList" class="list-group list-inline">
+            
+            <?php //if($administratorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Admin </li>';} ?> 
+    <?php //if($webEditorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> Web Editor</li>';} ?>
+    <?php //if($editorPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> OggiSTI Editor</li>';} ?>
+    <?php //if($reviserPermission==1){echo '<li class="list-group-item active"><span class="glyphicon glyphicon-ok"></span> OggiSTI Reviser</li>';} ?>           
+    </ul> -->
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
             <span class="glyphicon glyphicon-user"></span> <?php echo $completeName; ?> <span class="caret"></span></button>

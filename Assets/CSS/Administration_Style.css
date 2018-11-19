@@ -55,7 +55,7 @@
 
 
 #permissionsList{
-    font-size: 10px;
+    font-size: 5px;
     margin-top: 8px;
     margin-left: -2.25px;
     width: 500px;
@@ -65,9 +65,9 @@
 #permissionsList li{
     margin: 0 2.25px;
     padding: 3px 3px;
-    border-radius: 0;
-    background-color: #d81a68;
-    border-color: #d81a68;
+    color: black;
+    background-color:white;
+    border-color:white;
 }
 
 #logoAvatar{

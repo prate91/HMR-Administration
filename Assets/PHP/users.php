@@ -12,12 +12,12 @@
 // State:     working
 //
 // Version history.
-// - 2017.03.08  Nicolò
-//   First version
 // - 2018.03.14  Nicolò
 //   Changed page name
 // - 2018.03.16  Nicolò
 //   Changed page structure
+// - 2017.03.08  Nicolò
+//   First version
 //
 // ////////////////////////////////////////////////////////////////////////////
 //
@@ -112,7 +112,7 @@
 // - set level, same as banner;
 // - set active menu entry, 1=Cronologia, 2=Eventi and so on.  -->
 <div class="HMR_Banner">
-  <script> creaHeader(3, 'HMR_2017g_GC-WebHeaderRite-270x105-3.png') </script>
+  <script> creaHeader(3, 'HMR_2017g_GC-WebHeaderRite-270x105-1.png') </script>
 </div>
 
 <div id="HMR_Menu" class="HMR_Menu" >
